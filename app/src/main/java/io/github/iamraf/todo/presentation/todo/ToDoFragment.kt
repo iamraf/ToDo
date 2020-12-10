@@ -56,6 +56,6 @@ class ToDoFragment : Fragment(), ToDoAdapter.ToDoAdapterListener {
     }
 
     override fun onClick(item: ToDo) {
-        // Handle click
+        viewModel.updateToDo(item)
     }
 }

@@ -41,7 +41,7 @@ class ToDoAdapter(private val listener: ToDoAdapterListener) : ListAdapter<ToDo,
 
     companion object DiffUtilCallback : DiffUtil.ItemCallback<ToDo>() {
         override fun areItemsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
-            return oldItem.description == newItem.description
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {

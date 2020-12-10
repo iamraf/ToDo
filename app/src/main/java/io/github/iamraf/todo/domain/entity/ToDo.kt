@@ -1,6 +1,7 @@
 package io.github.iamraf.todo.domain.entity
 
 data class ToDo(
+    val id: String,
     val description: String,
-    val completed: Boolean
+    var completed: Boolean
 )

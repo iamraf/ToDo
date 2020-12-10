@@ -5,4 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ToDoDataSource {
     fun getTodo(): Flow<List<ToDo>>
+    fun addToDo(todo: ToDo)
+    fun removeToDo(todo: ToDo)
+    fun updateToDo(todo: ToDo)
 }

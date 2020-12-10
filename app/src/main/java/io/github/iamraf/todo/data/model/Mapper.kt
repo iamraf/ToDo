@@ -4,6 +4,7 @@ import io.github.iamraf.todo.domain.entity.ToDo
 
 fun ToDoRemoteModel.toTodo(): ToDo {
     return ToDo(
+        id = id ?: throw Exception(),
         description = description ?: "-",
         completed = completed ?: false
     )

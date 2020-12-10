@@ -14,4 +14,16 @@ class ToDoDataSourceImpl(private val repository: ToDoRepository) : ToDoDataSourc
             }
         }
     }
+
+    override fun addToDo(todo: ToDo) {
+        repository.addToDo(todo)
+    }
+
+    override fun removeToDo(todo: ToDo) {
+        repository.removeToDo(todo)
+    }
+
+    override fun updateToDo(todo: ToDo) {
+        repository.updateToDo(todo)
+    }
 }

@@ -6,11 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.iamraf.todo.domain.entity.ToDo
+import io.github.iamraf.todo.usecase.AddToDoUseCase
 import io.github.iamraf.todo.usecase.FetchToDoUseCase
+import io.github.iamraf.todo.usecase.RemoveToDoUseCase
+import io.github.iamraf.todo.usecase.UpdateToDoUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ToDoViewModel @ViewModelInject constructor(private val fetchToDoUseCase: FetchToDoUseCase) : ViewModel() {
+class ToDoViewModel @ViewModelInject constructor(
+    private val fetchToDoUseCase: FetchToDoUseCase,
+    private val addToDoUseCase: AddToDoUseCase,
+    private val removeToDoUseCase: RemoveToDoUseCase,
+    private val updateToDoUseCase: UpdateToDoUseCase
+) : ViewModel() {
     private val _list = MutableLiveData<List<ToDo>>()
     val list: LiveData<List<ToDo>> = _list
 
@@ -25,5 +33,18 @@ class ToDoViewModel @ViewModelInject constructor(private val fetchToDoUseCase: F
         } catch (exception: Exception) {
             _error.value = exception.message
         }
+    }
+
+    fun addToDo(todo: ToDo) {
+        addToDoUseCase.addToDo(todo)
+    }
+
+    fun removeToDo(todo: ToDo) {
+        removeToDoUseCase.removeToDo(todo)
+    }
+
+    fun updateToDo(todo: ToDo) {
+        todo.completed = !todo.completed
+        updateToDoUseCase.updateToDo(todo)
     }
 }
