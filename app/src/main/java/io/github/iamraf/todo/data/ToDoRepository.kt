@@ -1,3 +1,8 @@
 package io.github.iamraf.todo.data
 
-class ToDoRepository
+import io.github.iamraf.todo.data.model.ToDoRemoteModel
+import kotlinx.coroutines.flow.Flow
+
+interface ToDoRepository {
+    fun getTodo(): Flow<MutableList<ToDoRemoteModel>>
+}
