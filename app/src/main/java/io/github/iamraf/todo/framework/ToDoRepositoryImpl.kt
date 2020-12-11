@@ -18,7 +18,6 @@ class ToDoRepositoryImpl(private val firestore: FirebaseFirestore) : ToDoReposit
         try {
             eventsCollection = firestore.collection("todo")
         } catch (e: Throwable) {
-            e.printStackTrace()
             close(e)
         }
 

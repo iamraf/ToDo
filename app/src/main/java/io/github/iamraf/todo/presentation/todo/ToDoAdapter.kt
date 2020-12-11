@@ -1,6 +1,7 @@
 package io.github.iamraf.todo.presentation.todo
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -26,7 +27,7 @@ class ToDoAdapter(private val listener: ToDoAdapterListener) : ListAdapter<ToDo,
                 if (adapterPosition < 0) return@setOnClickListener
 
                 getItem(adapterPosition)?.let {
-                    listener.onClick(it)
+                    listener.onClick(it, binding.root)
                 }
             }
         }
@@ -50,6 +51,6 @@ class ToDoAdapter(private val listener: ToDoAdapterListener) : ListAdapter<ToDo,
     }
 
     interface ToDoAdapterListener {
-        fun onClick(item: ToDo)
+        fun onClick(item: ToDo, view: View)
     }
 }
