@@ -26,12 +26,16 @@ class ToDoViewModel @ViewModelInject constructor(
     val error: LiveData<String> = _error
 
     fun fetchTodo() = viewModelScope.launch {
-        fetchToDoUseCase.getTodo().collect {
-            if (it.isNotEmpty()) {
-                _list.value = it
-            } else {
-                _error.value = "No ToDo found"
+        try {
+            fetchToDoUseCase.getTodo().collect {
+                if (it.isNotEmpty()) {
+                    _list.value = it
+                } else {
+                    _error.value = "No ToDo found"
+                }
             }
+        } catch (e: Exception) {
+            _error.value = e.message
         }
     }
 
